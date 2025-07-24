@@ -36,7 +36,7 @@ class ChatbotAssistant:
   self.documents = []
   self.vocabulary = []
   self.intents = []
-  self.intents_responses = []
+  self.intents_responses = {}
   self.function_mappings = function_mappings
 
   self.x = None
@@ -51,7 +51,6 @@ class ChatbotAssistant:
   
   return words
 
-
 # chatbot = ChatbotAssistant(intents_path='intents.json')
 # print(chatbot.tokenize_and_lemmatize('running runs ran run'))
 
@@ -65,14 +64,24 @@ class ChatbotAssistant:
   if os.path.exists(self.intents_path):
    with open(self.intents_path, 'r') as f:
     intents_data = json.load(f)
-
-   intents = []
-   intents_responses = []
-   vocabulary = []
-   documents = []
    
    #iterate over intents to extract tags, patterns, and responses
    for intent in intents_data['intents']:
-    if intent['tag'] not in intents:
-     intents.append(intent['tag'])
-     intents_responses[intent['tag']] = intent['responses']
+    if intent['tag'] not in self.intents:
+     self.intents.append(intent['tag'])
+     self.intents_responses[intent['tag']] = intent['responses']
+   
+    for pattern in intent['patterns']:
+     pattern_words = self.tokenize_and_lemmatize(pattern)
+     self.vocabulary.extend(pattern_words)
+     self.documents.append((pattern_words, intent['tag']))
+    
+    self.vocabulary = sorted(set(self.vocabulary))  #remove duplicates and sort vocabulary
+  
+  def prepare_data(self):
+   bags = []
+   indices = []
+
+   for doc in self.documents:
+    words = doc[0]
+    bag = self.bag_of_words(words, self.vocabulary)
