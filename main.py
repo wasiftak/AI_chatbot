@@ -144,3 +144,13 @@ class ChatbotAssistant:
 
       predicted_class_index = torch.argmax(predictions, dim=1).item()
       predicted_intent = self.intents[predicted_class_index]
+
+      if self.function_mappings:
+        if predicted_intent in self.function_mappings:
+          self.function_mappings[predicted_intent]()
+
+        if  self.intents_responses[predicted_intent]:
+         return random.choice(self.intents_responses[predicted_intent])
+        else: 
+         return None
+        
