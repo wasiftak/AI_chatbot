@@ -86,3 +86,19 @@ class ChatbotAssistant:
     bag = self.bag_of_words(words)
 
     intent_index = self.intents.index(doc[1])   
+
+    bags.append(bag)
+    indices.append(intent_index)
+  
+   self.X = np.array(bags)
+   self.y = np.array(indices)
+
+
+  def train_model(self, batch_size, lr,epochs):
+   X_tensor = torch.tensor(self.X, dtype=torch.float32)
+   y_tensor = torch.tensor(self.y, dtype=torch.long)
+
+   dataset = TensorDataset(X_tensor, y_tensor)
+   loader = DataLoader(dataset, batch_size=batch_size, shuffle=True )
+
+   self.model = ChatbotModel(self.X.shape[1], len(self.intents))
