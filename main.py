@@ -10,6 +10,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader, TensorDataset
+from datetime import datetime
 
 #defining a flexible neural network model(architecture)
 class ChatbotModel(nn.Module):
@@ -40,8 +41,8 @@ class ChatbotAssistant:
   self.intents_responses = {}
   self.function_mappings = function_mappings
 
-  self.x = None
-  self.y = None
+  self.X = None
+  self.Y = None
 
  @staticmethod
  def tokenize_and_lemmatize(text):
@@ -52,15 +53,10 @@ class ChatbotAssistant:
 
   return words
 
-# chatbot = ChatbotAssistant(intents_path='intents.json')
-# print(chatbot.tokenize_and_lemmatize('running runs ran run'))
-
  def bag_of_words(self, words):
    return [1 if word in words else 0 for word in self.vocabulary]
 
  def parse_intents(self):    #get data from intents.json file
-  lemmitizer = nltk.WordNetLemmatizer()
-
   if os.path.exists(self.intents_path):
    with open(self.intents_path, 'r') as f:
     intents_data = json.load(f)
@@ -149,30 +145,55 @@ class ChatbotAssistant:
    if self.function_mappings and predicted_intent in self.function_mappings:
        base_response = random.choice(self.intents_responses[predicted_intent])
        function_output = self.function_mappings[predicted_intent]()
-       return f"{base_response} {function_output}"
+       return f"{base_response}{function_output}"
 
    if self.intents_responses[predicted_intent]:
       return random.choice(self.intents_responses[predicted_intent])
    else:
       return None
 
+def get_current_time():
+    # Example format: 1:41 PM
+    return datetime.now().strftime("%I:%M %p")
 
-# def get_stocks():
-#     stocks = ['AAPL', 'GOOGL', 'MSFT', 'META']
-
-#     return random.sample(stocks,3)
+def get_current_date():
+    # Example format: Tuesday, August 5, 2025
+    return datetime.now().strftime("%A, %B %d, %Y")
 
 if __name__ == "__main__":
-    assistant = ChatbotAssistant('intents.json')
+    # --- UPDATED SECTION ---
+
+    # 1. Create the dictionary to map intent tags to our new functions
+    function_mappings = {
+        'time': get_current_time,
+        'date': get_current_date
+    }
+    
+    # 2. Pass the mappings dictionary when creating the assistant
+    assistant = ChatbotAssistant('intents.json', function_mappings=function_mappings)
+    
+    # 3. Parse intents to prepare vocabulary and responses (this is needed for both training and loading)
     assistant.parse_intents()
+    
+    # --- This part is for INFERENCE (talking to a pre-trained bot) ---
+    # To train a new model, you would uncomment the lines below
     # assistant.prepare_data()
     # assistant.train_model(batch_size=8, lr=0.001, epochs=500)
-
     # assistant.save_model('chatbot_model.pth', 'dimensions.json')
+
+    # Load the trained model
     assistant.load_model('chatbot_model.pth', 'dimensions.json')
+    
+    # 4. Start the conversation loop
+    print("Chatbot is ready! Type 'quit' to exit.")
     while True:
         message = input("enter message: ")
-        if message == '/quit':
+        if message.lower() == 'quit':
             break
         
-        print (assistant.process_message(message))
+        response = assistant.process_message(message)
+        if response:
+            print(response)
+        else:
+            # A fallback response if the process_message returns None
+            print("I'm not sure how to respond to that.")

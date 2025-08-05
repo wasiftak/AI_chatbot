@@ -103,12 +103,12 @@
 		{
 			"tag": "time",
 			"patterns": ["What time is it?", "Tell me the current time", "Do you know the time?", "Time please"],
-			"responses": ["I don't have a direct connection to a clock, but your device's clock says it is currently 1:13 PM.", "It is 1:13 PM right now."]
+			"responses": ["The current time is ", "Right now, it is ", "It is "]
 		},
 		{
 			"tag": "date",
 			"patterns": ["What is the date today?", "What's today's date?", "Can you tell me the date?", "What day is it?"],
-			"responses": ["Today is August 5, 2025.", "It's Tuesday, August 5, 2025."]
+			"responses": ["Today's date is ", "The date is ", "It is "]
 		},
 		{
 			"tag": "weather",
