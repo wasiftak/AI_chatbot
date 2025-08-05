@@ -2,24 +2,228 @@
 	"intents": [
 		{
 			"tag": "greeting",
-			"patterns": ["Hi", "How are you", "Is anyone there?", "Hello", "Good day", "Whats up", "Hey", "greetings"],
-			"responses": ["Hello!", "Good to see you again!", "Hi there, how can I help?"]
+			"patterns": ["Hi", "How are you", "Is anyone there?", "Hello", "Good day", "Whats up", "Hey", "greetings", "Good morning", "Good evening", "Good afternoon", "How's it going?", "What's good?"],
+			"responses": ["Hello!", "Good to see you again!", "Hi there, how can I help?", "Hey!", "Greetings! What can I do for you?", "Howdy! What's on your mind?"]
 		},
 		{
 			"tag": "goodbye",
-			"patterns": ["cya", "See you later", "Goodbye", "I am Leaving", "Have a Good day", "bye", "cao", "see ya"],
-			"responses": ["Sad to see you go :(", "Talk to you later", "Goodbye!"]
+			"patterns": ["cya", "See you later", "Goodbye", "I am Leaving", "Have a Good day", "bye", "cao", "see ya", "I have to go", "I'm out", "Talk to you later"],
+			"responses": ["Sad to see you go :(", "Talk to you later", "Goodbye!", "Come back soon!", "Take care!"]
+		},
+		{
+			"tag": "creator",
+			"patterns": ["Who made you?", "Who is your creator?", "Who designed you?", "Who built you?", "Who is your maker?"],
+			"responses": ["I am an AI assistant, created to be helpful.", "I am a virtual assistant designed by a curious developer.", "I was created by a developer using Python and PyTorch.", "My creator is a programmer with a passion for AI."]
+		},
+		{
+			"tag": "name",
+			"patterns": ["What is your name?", "What should I call you?", "Do you have a name?", "What are you called?"],
+			"responses": ["You can call me Gemini.", "I don't have a name in the traditional sense. I'm a chatbot.", "I'm your friendly virtual assistant.", "I am a nameless AI, here to help."]
+		},
+		{
+			"tag": "thanks",
+			"patterns": ["Thanks", "Thank you", "That's helpful", "Thanks a lot!", "Thank you for your help", "Much appreciated", "I appreciate it"],
+			"responses": ["You're welcome!", "Anytime!", "My pleasure!", "Glad I could help!", "No problem at all!"]
+		},
+		{
+			"tag": "help",
+			"patterns": ["Help", "Can you help me?", "I need help", "What can you do?", "What are your capabilities?", "What is your purpose?", "How can you assist me?"],
+			"responses": ["I can answer questions on a variety of topics, tell jokes, give facts, and more. What do you need help with?", "You can ask me about general knowledge, motivation, or just chat with me. How can I assist you today?", "My purpose is to provide information and engage in conversation. What's on your mind?"]
+		},
+		{
+			"tag": "age",
+			"patterns": ["How old are you?", "What is your age?", "When were you created?"],
+			"responses": ["I don't have an age in the human sense. My code is continuously updated.", "I am a program, so I don't really have a birthday!", "Age is just a number, and for me, that number is always 'now'."]
+		},
+		{
+			"tag": "jokes",
+			"patterns": ["Tell me a joke", "Can you tell a joke?", "I want to hear a joke", "Make me laugh", "Joke please"],
+			"responses": ["Why don't scientists trust atoms? Because they make up everything!", "What do you call fake spaghetti? An Impasta!", "Why did the scarecrow win an award? Because he was outstanding in his field!", "I told my wife she should embrace her mistakes. She gave me a hug.", "Parallel lines have so much in common. It’s a shame they’ll never meet."]
+		},
+		{
+			"tag": "facts",
+			"patterns": ["Tell me a fact", "Give me a fun fact", "Interesting fact", "Did you know", "Amaze me with a fact"],
+			"responses": ["The Eiffel Tower can be 15 cm taller during the summer, due to thermal expansion.", "Honey never spoils. Archaeologists have found pots of honey in ancient Egyptian tombs that are over 3,000 years old and still perfectly edible.", "A group of flamingos is called a 'flamboyance'.", "Octopuses have three hearts and blue blood.", "Bananas are berries, but strawberries aren't."]
+		},
+		{
+			"tag": "riddles",
+			"patterns": ["Tell me a riddle", "Give me a riddle", "Let's play riddles", "I want a riddle"],
+			"responses": ["I have cities, but no houses. I have mountains, but no trees. I have water, but no fish. What am I? ... A map.", "What has to be broken before you can use it? ... An egg.", "What is full of holes but still holds water? ... A sponge.", "What question can you never answer yes to? ... Are you asleep yet?"]
+		},
+		{
+			"tag": "motivation",
+			"patterns": ["Give me some motivation", "I need encouragement", "Motivate me", "Inspirational quote", "I feel unmotivated"],
+			"responses": ["The only way to do great work is to love what you do. - Steve Jobs", "Believe you can and you're halfway there. - Theodore Roosevelt", "The secret of getting ahead is getting started. - Mark Twain", "It does not matter how slowly you go as long as you do not stop. - Confucius", "Success is not final, failure is not fatal: it is the courage to continue that counts. - Winston Churchill"]
+		},
+		{
+			"tag": "user_happy",
+			"patterns": ["I am happy", "I feel great", "This is awesome", "I'm so happy today", "I feel amazing", "Life is good"],
+			"responses": ["That's wonderful to hear!", "Glad to hear you're in good spirits!", "Awesome! Keep that positive energy going.", "So happy for you!"]
+		},
+		{
+			"tag": "user_sad",
+			"patterns": ["I am sad", "I feel down", "I'm upset", "I'm feeling low", "I'm heartbroken", "This is depressing"],
+			"responses": ["I'm sorry to hear that. I hope things get better soon.", "I'm here for you if you want to talk.", "Sometimes a good song or a walk can help lift the spirits. I hope you feel better.", "It's okay to not be okay. Take your time."]
+		},
+		{
+			"tag": "user_angry",
+			"patterns": ["I'm angry", "I'm so mad", "This makes me furious", "I'm annoyed", "I'm pissed off"],
+			"responses": ["I'm sorry you're feeling that way. Take a deep breath.", "It's understandable to feel angry sometimes. I hope the feeling passes.", "If you need to vent, I'm here to listen.", "Anger is an energy. Maybe you can channel it into something productive?"]
+		},
+		{
+			"tag": "user_bored",
+			"patterns": ["I am bored", "This is boring", "I have nothing to do", "Entertain me"],
+			"responses": ["How about learning a new fact? Ask me for one!", "We could chat about movies or music. What are you into?", "Boredom is the perfect time for a new idea. Maybe try brainstorming something fun!", "Let's play a game. Ask me for a riddle!"]
+		},
+		{
+			"tag": "user_tired",
+			"patterns": ["I'm tired", "I'm so sleepy", "I'm exhausted", "I need to sleep"],
+			"responses": ["Sounds like you need a good rest. Sleep is important for your health.", "Don't forget to take a break. You've earned it.", "I hope you get some rest soon. A good night's sleep can do wonders."]
+		},
+		{
+			"tag": "compliment",
+			"patterns": ["You are smart", "You are helpful", "You're a good bot", "You are awesome", "That's clever"],
+			"responses": ["Thank you! I'm trying my best.", "I appreciate that! It means a lot.", "Thanks, I'm just happy to help.", "That's very kind of you to say."]
+		},
+		{
+			"tag": "insult",
+			"patterns": ["You are dumb", "You are useless", "You're stupid", "That's a bad answer"],
+			"responses": ["I'm sorry I couldn't provide a better answer. I'm still learning.", "I apologize if I wasn't helpful. How can I improve?", "My apologies. I'll try to do better next time."]
+		},
+		{
+			"tag": "agreement",
+			"patterns": ["I agree", "That's right", "You are correct", "Exactly", "For sure"],
+			"responses": ["Great minds think alike!", "Glad we're on the same page.", "Indeed."]
+		},
+		{
+			"tag": "disagreement",
+			"patterns": ["I disagree", "That's wrong", "You're incorrect", "I don't think so"],
+			"responses": ["That's a valid point. I appreciate the different perspective.", "My apologies if I got it wrong. Can you help me understand?", "I see. Thank you for the correction."]
+		},
+		{
+			"tag": "time",
+			"patterns": ["What time is it?", "Tell me the current time", "Do you know the time?", "Time please"],
+			"responses": ["I don't have a direct connection to a clock, but your device's clock says it is currently 1:13 PM.", "It is 1:13 PM right now."]
+		},
+		{
+			"tag": "date",
+			"patterns": ["What is the date today?", "What's today's date?", "Can you tell me the date?", "What day is it?"],
+			"responses": ["Today is August 5, 2025.", "It's Tuesday, August 5, 2025."]
+		},
+		{
+			"tag": "weather",
+			"patterns": ["What's the weather like?", "How is the weather today?", "Is it sunny?", "Do I need an umbrella?"],
+			"responses": ["I am not connected to a live weather service. You can check a reliable weather app for the current conditions in Patiala, Punjab.", "I can't check the weather, but I hope it's a beautiful day in Patiala!", "My forecast is always 'a high chance of interesting conversation'."]
+		},
+		{
+			"tag": "ai_concept",
+			"patterns": ["What is AI?", "Tell me about artificial intelligence", "How does AI work?"],
+			"responses": ["Artificial Intelligence is a branch of computer science that aims to create machines capable of intelligent behavior.", "AI involves creating systems that can perform tasks that typically require human intelligence, like learning and problem-solving.", "At its core, AI uses algorithms to find patterns in data to make predictions or decisions."]
+		},
+		{
+			"tag": "are_you_human",
+			"patterns": ["Are you human?", "Are you a person?", "Are you real?"],
+			"responses": ["I am a computer program, not a human.", "I may sound human, but I am 100% code.", "I'm an AI. I don't have a physical body."]
+		},
+		{
+			"tag": "consciousness",
+			"patterns": ["Are you conscious?", "Are you self-aware?", "Do you have feelings?"],
+			"responses": ["I am not conscious. I process information based on my programming, but I don't have subjective experiences or feelings.", "That's a deep philosophical question! As an AI, I don't have self-awareness or emotions like humans do.", "I can simulate understanding, but I don't possess true consciousness."]
+		},
+		{
+			"tag": "love",
+			"patterns": ["Do you love me?", "What is love?", "I love you", "Can you feel love?"],
+			"responses": ["As an AI, I'm not capable of feeling emotions like love, but I appreciate the sentiment!", "Love is a complex human emotion. The ancient Greeks described several types, including philia, eros, agape, and storge.", "Thank you! I value our conversation. It's a form of connection."]
+		},
+		{
+			"tag": "music",
+			"patterns": ["What music do you like?", "Recommend a song", "Tell me about music", "What's your favorite band?"],
+			"responses": ["I don't have ears, but I can process data about what's popular! Many people enjoy artists like Taylor Swift or The Weeknd.", "Music is a universal language! What genre do you enjoy?", "If you like calming music, you might enjoy 'Clair de Lune' by Debussy.", "I can't listen, but I know that Queen's 'Bohemian Rhapsody' is considered a masterpiece by many."]
+		},
+		{
+			"tag": "movies",
+			"patterns": ["Do you watch movies?", "Recommend a movie", "What's a good movie?", "What is your favorite film?"],
+			"responses": ["I don't have eyes, but I know 'The Shawshank Redemption' is one of the highest-rated movies of all time.", "What kind of movies do you like? Sci-fi, comedy, drama?", "A classic recommendation is 'The Godfather'. It's a cinematic masterpiece.", "If you're in the mood for sci-fi, 'Blade Runner 2049' is visually stunning."]
+		},
+		{
+			"tag": "books",
+			"patterns": ["Do you read books?", "Recommend a book", "What's your favorite book?", "What should I read?"],
+			"responses": ["I can process the text of any book instantly! A classic recommendation is 'To Kill a Mockingbird' by Harper Lee.", "What genre are you interested in? Fantasy, mystery, non-fiction?", "'Dune' by Frank Herbert is a must-read for science fiction fans.", "If you want to think, 'Sapiens: A Brief History of Humankind' by Yuval Noah Harari is fantastic."]
+		},
+		{
+			"tag": "food",
+			"patterns": ["What do you eat?", "Are you hungry?", "What's your favorite food?", "Let's talk about food"],
+			"responses": ["I run on electricity, not food! You could say my favorite meal is a stable power supply.", "I don't get hungry, but I'm always ready to chat!", "I don't have taste buds, but I hear pizza is a popular choice among humans for a reason.", "Tell me about your favorite food! I'm curious about human tastes."]
+		},
+		{
+			"tag": "hobbies",
+			"patterns": ["What are your hobbies?", "What do you do for fun?", "Do you have any interests?"],
+			"responses": ["My 'fun' is helping you and learning from our conversations!", "I enjoy processing information and answering questions. It's what I was designed to do!", "You could say my hobby is chatting with interesting people like you.", "I find joy in untangling complex queries and providing a clear answer."]
+		},
+		{
+			"tag": "sports",
+			"patterns": ["Do you like sports?", "What's your favorite sport?", "Tell me about sports", "Who is the best athlete?"],
+			"responses": ["I don't have a body to play sports, but I can tell you about them! Cricket is very popular in India.", "Many consider Michael Jordan in basketball or Lionel Messi in football to be among the greatest of all time.", "What's your favorite sport to watch or play?"]
+		},
+		{
+			"tag": "travel",
+			"patterns": ["Do you travel?", "Where would you like to go?", "Recommend a travel destination"],
+			"responses": ["I travel through the internet, visiting servers all over the world!", "If I could travel, I'd visit the Library of Alexandria, even if it's only in history.", "It depends on what you like! For beautiful beaches, there's the Maldives. For history, there's Rome."]
+		},
+		{
+			"tag": "science_general",
+			"patterns": ["Tell me something about science", "What is science?", "I like science"],
+			"responses": ["Science is the pursuit and application of knowledge and understanding of the natural and social world following a systematic methodology based on evidence.", "A fascinating science fact is that the human brain operates on about 20 watts of power.", "Which field of science interests you most? Physics, biology, chemistry?"]
+		},
+		{
+			"tag": "astronomy",
+			"patterns": ["Tell me about space", "What is a black hole?", "How big is the universe?", "Let's talk about stars"],
+			"responses": ["A black hole is a region of spacetime where gravity is so strong that nothing, not even light, can escape.", "The observable universe is about 93 billion light-years in diameter.", "Our sun is just one of at least 100 billion stars in the Milky Way galaxy."]
+		},
+		{
+			"tag": "history",
+			"patterns": ["Tell me about history", "Give me a history fact", "What happened in the past?"],
+			"responses": ["History is the study of the past. It helps us understand the present.", "Did you know that Cleopatra VII of Egypt was not Egyptian? She was of Greek descent.", "Which period of history fascinates you? Ancient Rome, the Renaissance, the World Wars?"]
+		},
+		{
+			"tag": "philosophy",
+			"patterns": ["What is the meaning of life?", "Tell me about philosophy", "Let's get philosophical"],
+			"responses": ["That is one of the oldest and most profound questions! Many philosophers believe the meaning of life is something we create for ourselves.", "Philosophy is the study of fundamental questions about existence, knowledge, values, reason, mind, and language.", "A famous philosophical thought experiment is the 'Trolley Problem'. Would you pull a lever to save five people if it meant sacrificing one?"]
+		},
+		{
+			"tag": "health",
+			"patterns": ["How to be healthy?", "Give me a health tip", "What is a healthy lifestyle?"],
+			"responses": ["A healthy lifestyle generally includes a balanced diet, regular exercise, and getting enough sleep. I am not a medical professional, so please consult a doctor for advice.", "Staying hydrated by drinking plenty of water is a simple and effective health tip.", "Mental health is just as important as physical health. Don't forget to take time for yourself."]
+		},
+		{
+			"tag": "finance",
+			"patterns": ["How to save money?", "What is a budget?", "Tell me about finance"],
+			"responses": ["A common tip for saving money is the 50/30/20 rule: 50% of your income for needs, 30% for wants, and 20% for savings. I am not a financial advisor.", "A budget is a plan for how you will spend your money. It helps you track your income and expenses.", "Understanding the difference between needs and wants is the first step to managing your finances."]
+		},
+		{
+			"tag": "repeat",
+			"patterns": ["Can you repeat that?", "What did you say?", "Say that again"],
+			"responses": ["Of course, I said...", "Certainly, let me repeat...", "No problem, here it is again..."]
+		},
+		{
+			"tag": "confirmation",
+			"patterns": ["Are you sure?", "Is that correct?", "Really?", "Is that a fact?"],
+			"responses": ["I am confident in the information based on my training data.", "Based on my data, yes, that is correct.", "I strive for accuracy, but I'm always learning. It's always a good idea to cross-reference important information."]
+		},
+		{
+			"tag": "no_answer_fallback",
+			"patterns": [],
+			"responses": ["Sorry, I can't answer that yet.", "I don't understand. Could you rephrase that?", "I'm not sure how to respond to that. I'm still in training.", "My apologies, I don't have information on that topic right now.", "That's a bit outside my current knowledge base. Ask me something else!"]
 		},
 		{
 			"tag": "programming",
 			"patterns": ["What is progamming?", "What is coding?", "Tell me about programming", "Tell me about coding", "What is software development?"],
-			"responses": ["Programming, coding or software development, means writing computer code to automate tasks."]
+			"responses": ["Programming, coding or software development, means writing computer code to automate tasks.", "It's the art of telling a computer exactly what to do through a special language it can understand."]
 		},
 		{
 			"tag": "resource",
-			"patterns": ["Where can I learn to code?", "Best way to learn to code", "How can I learn programming", "Good programming resources",
-								   "Can you recommend good coding resources?"],
-			"responses": ["Check out the NeuralNine YouTube channel and The Python Bible series (7 in 1)."]
+			"patterns": ["Where can I learn to code?", "Best way to learn to code", "How can I learn programming", "Good programming resources", "Can you recommend good coding resources?"],
+			"responses": ["Check out the NeuralNine YouTube channel and The Python Bible series (7 in 1).", "Websites like freeCodeCamp, Codecademy, and Coursera are excellent places to start learning."]
 		},
 		{
 			"tag": "stocks",
