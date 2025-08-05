@@ -11,7 +11,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 from torch.utils.data import Dataset, DataLoader, TensorDataset
 
-#defining a flexible neural network model
+#defining a flexible neural network model(architecture)
 class ChatbotModel(nn.Module):                 
  def __init__(self, input_size, output_size):
   super(ChatbotModel, self).__init__()
@@ -77,7 +77,7 @@ class ChatbotAssistant:
     
     self.vocabulary = sorted(set(self.vocabulary))  #remove duplicates and sort vocabulary
   
-  def prepare_data(self):
+ def prepare_data(self):
    bags = []
    indices = []
 
@@ -94,7 +94,7 @@ class ChatbotAssistant:
    self.y = np.array(indices)
 
 
-  def train_model(self, batch_size, lr,epochs):
+ def train_model(self, batch_size, lr,epochs):
    X_tensor = torch.tensor(self.X, dtype=torch.float32)
    y_tensor = torch.tensor(self.y, dtype=torch.long)
 
@@ -149,8 +149,21 @@ class ChatbotAssistant:
         if predicted_intent in self.function_mappings:
           self.function_mappings[predicted_intent]()
 
-        if  self.intents_responses[predicted_intent]:
+      if  self.intents_responses[predicted_intent]:
          return random.choice(self.intents_responses[predicted_intent])
-        else: 
+      else: 
          return None
         
+
+def get_stocks():
+    stocks = ['AAPL', 'GOOGL', 'MSFT', 'META']
+
+    return random.sample(stocks,3)
+
+if __name__ == "__main__":
+    assistant = ChatbotAssistant('intents.json', function_mappings={'stocks': get_stocks})
+    assistant.parse_intents()
+    assistant.prepare_data()
+    assistant.train_model(batch_size=8, lr=0.001, epochs=100)
+
+    assistant.save_model('chatbot_model.pth', 'dimensions.json')
