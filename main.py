@@ -165,11 +165,11 @@ class ChatbotAssistant:
 if __name__ == "__main__":
     assistant = ChatbotAssistant('intents.json')
     assistant.parse_intents()
-    assistant.prepare_data()
-    assistant.train_model(batch_size=8, lr=0.001, epochs=500)
+    # assistant.prepare_data()
+    # assistant.train_model(batch_size=8, lr=0.001, epochs=500)
 
-    assistant.save_model('chatbot_model.pth', 'dimensions.json')
-
+    # assistant.save_model('chatbot_model.pth', 'dimensions.json')
+    assistant.load_model('chatbot_model.pth', 'dimensions.json')
     while True:
         message = input("enter message: ")
         if message == '/quit':
